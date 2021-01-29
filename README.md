@@ -5,6 +5,7 @@ Made by Axel Lemoine and Mathéo Vergnolle in "MODAL INF472D-2020 : Distributed 
 
 ## Dependencies
 
+- only works on Linux systems
 - `sox` can be installed on a Ubuntu system with `sudo apt install sox`
 
 ## Manual

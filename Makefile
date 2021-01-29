@@ -25,5 +25,10 @@ $(LINK_TARGET) : $(OBJS)
 %.o : %.c
 	gcc -g  -Wall -o $@ -c $<
 
+%.c : %.h
+
+main.o : soundCode.c soundCode.h
+soundCode.o : soundCode.h
+
 pack: #prepare the zip file to be uploaded on Moodle
 	zip $(PACK_DEST) *.md *.c *.h Makefile

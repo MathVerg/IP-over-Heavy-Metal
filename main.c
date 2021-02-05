@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "soundCode.h"
+#include "soundDecode.h"
 
 
 int main(int argc, char *argv[]) {

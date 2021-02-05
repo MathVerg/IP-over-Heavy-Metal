@@ -10,4 +10,5 @@ Made by Axel Lemoine and Mathéo Vergnolle in "MODAL INF472D-2020 : Distributed 
 
 ## Manual
 
-- `soundCode` contains the functions used to convert bytes to sound and sound to bytes
+- `soundCode` contains the functions used to convert bytes to sound
+- `soundDecode` contains the functions used to convert sound to bytes

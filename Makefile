@@ -6,7 +6,8 @@ PACK_DEST = LemoineVergnolleHeavyMetal.zip
 OBJS = \
 	main.o \
 	soundCode.o \
-	soundDecode.o
+	soundDecode.o \
+	utils.o
 
 
 REBUILDABLES = $(OBJS) $(LINK_TARGET) $(PACK_DEST)
@@ -16,7 +17,7 @@ all : $(LINK_TARGET)
 
 
 clean:
-	rm -f $(REBUILDABLES)
+	rm -f $(REBUILDABLES) *.gch
 
 
 $(LINK_TARGET) : $(OBJS)
@@ -27,10 +28,6 @@ $(LINK_TARGET) : $(OBJS)
 	gcc -g  -Wall -o $@ -c $<
 
 %.c : %.h
-
-main.o : soundCode.c soundCode.h soundDecode.c soundDecode.h sound.h
-soundCode.o : soundCode.h sound.h
-soundDecode.o : soundDecode.h sound.h
 
 pack: #prepare the zip file to be uploaded on Moodle
 	zip $(PACK_DEST) *.md *.c *.h Makefile

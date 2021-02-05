@@ -2,3 +2,4 @@ main
 *.o
 *.zip
 .vscode/*
+*.gch

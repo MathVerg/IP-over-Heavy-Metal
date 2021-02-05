@@ -2,7 +2,7 @@
 #define SOUND_H
 
 #define MAX_DATA_SIZE 1024
-#define SOUND_TIMING 0.25
+#define SOUND_TIMING 1.0
 
 
 /* frequecy code */

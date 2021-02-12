@@ -30,7 +30,7 @@ mainSender : mainSender.o soundCode.o
 mainReceiver : mainReceiver.o soundDecode.o utils.o
 	gcc -g -o $@ $^
 
-main: main.o tun.o sniffer.o
+main: main.o tun.o sniffer.o utils.o
 	gcc -g -o $@ $^
 
 %.o : %.c

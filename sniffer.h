@@ -1,7 +1,7 @@
 #ifndef SNIFFER_H
 #define SNIFFER_H
 
-#include "sound.h"
+#include "const.h"
 
 /*
 An ip packet is sent to the tun interface

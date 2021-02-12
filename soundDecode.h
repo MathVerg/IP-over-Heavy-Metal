@@ -1,7 +1,7 @@
 #ifndef SOUND_DECODE_H
 #define SOUND_DECODE_H
 
-#include "sound.h"
+#include "const.h"
 
 #define BEGINNING_SILENCE_TIME 4.0
 #define FINAL_SILENCE_TIME 5.0

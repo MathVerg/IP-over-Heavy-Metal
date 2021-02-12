@@ -2,7 +2,7 @@
 
 #define SOUND_CODE_H
 
-#include "sound.h"
+#include "const.h"
 
 
 /* Plays the sounds corresponding to the data in the buffer.

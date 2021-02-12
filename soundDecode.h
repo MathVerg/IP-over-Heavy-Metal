@@ -5,7 +5,7 @@
 
 #define BEGINNING_SILENCE_TIME 4.0
 #define FINAL_SILENCE_TIME 3.0
-#define SILENCE_THRESHOLD 2.0
+#define SILENCE_THRESHOLD 15.0
 
 /* Writes the data recorded as sound in the buffer.
 / Returns the number of bytes that were written */

@@ -20,8 +20,8 @@ int soundToBytes(dataBuffer *buffer) {
   sprintf(trimmingCommand, "/usr/bin/sox %s %s trim %f silence 1 0.1 %f", recordPath, trimmedPath, BEGINNING_SILENCE_TIME, SILENCE_THRESHOLD); //remove the silence at the beginning
   system(trimmingCommand);
 
-  for (float t = 0.0; t < 10.0; t += SOUND_TIMING) {
-    printf("%f\n", freqBetween(trimmedPath, t, SOUND_TIMING) );
+  for (float t = 0.0; t < 10.0; t += NOTE_DURATION) {
+    printf("%d\n", indClosestInArray(freqBetween(trimmedPath, t, NOTE_DURATION), freqTable, FREQ_NUMBER) );
   }
 
   return -1;

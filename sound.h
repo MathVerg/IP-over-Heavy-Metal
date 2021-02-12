@@ -1,8 +1,16 @@
 #ifndef SOUND_H
 #define SOUND_H
 
-#define MAX_DATA_SIZE 1024
+#define MAX_DATA_SIZE 1500
 #define NOTE_DURATION 0.1
+
+// name of tun interface: tunX
+
+#define TUN_NAME "tunX"
+
+// by default, mtu = 1500 bytes (max transmission unit)
+
+#define MTU MAX_DATA_SIZE
 
 
 /* frequecy code */
@@ -16,5 +24,15 @@ typedef struct dataBuffer {
   int length;
 } dataBuffer;
 
+
+/* 
+this struct represents the packet
+we always suppose that data = malloc(MTU)
+*/
+
+typedef struct packet {
+  char *data;
+  int length;
+} packet;
 
 #endif // SOUND_H

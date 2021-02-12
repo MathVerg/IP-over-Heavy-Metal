@@ -13,26 +13,16 @@ int soundToBytes(dataBuffer *buffer) {
 
   char recordCommand[100];
   sprintf(recordCommand, "/usr/bin/rec %s silence 0 1 %f %f%%", recordPath, FINAL_SILENCE_TIME, SILENCE_THRESHOLD); //stop recording after 3.0 s of silence
-  printf("%s", recordCommand);
   system(recordCommand);
 
   char trimmingCommand[100];
-  sprintf(trimmingCommand, "/usr/bin/sox %s %s trim %f silence 1 0.1 %f", recordPath, trimmedPath, BEGINNING_SILENCE_TIME, SILENCE_THRESHOLD); //remove the silence at the beginning
+  sprintf(trimmingCommand, "/usr/bin/sox %s %s trim %f silence 1 0.1 %f%%", recordPath, trimmedPath, BEGINNING_SILENCE_TIME, SILENCE_THRESHOLD); //remove the silence at the beginning
   system(trimmingCommand);
 
-  for (float t = 0.0; t < 10.0; t += NOTE_DURATION) {
-    printf("%d\n", indClosestInArray(freqBetween(trimmedPath, t, NOTE_DURATION), freqTable, FREQ_NUMBER) );
-  }
-
-  return -1;
-}
-
-float freqBetween(char *audioFile, float start, float duration) {
   FILE *resultPointer;
 
   char getFreqCommand[100];
-  sprintf(getFreqCommand, "/usr/bin/sox %s -n trim %f %f stat -freq 2>&1 | head -n %d | tail -n %d",
-    audioFile, start, duration, FREQ_LOW_BOUND + FREQ_LINES, FREQ_LINES);
+  sprintf(getFreqCommand, "/usr/bin/aubiopitch -i %s -B 4096 -H 4096", trimmedPath);
   resultPointer = popen(getFreqCommand, "r");
 
   if (resultPointer == NULL) {
@@ -40,16 +30,17 @@ float freqBetween(char *audioFile, float start, float duration) {
     return -1;
   }
 
-  float recordedFrequencies[FREQ_LINES];
-  float recordedPower[FREQ_LINES];
+  float timestamp = 0.0, freq = 1.0, t = 0.0;
 
-  for (int k = 0; k < FREQ_LINES; k ++) {
-    fscanf(resultPointer, "%f %f", &recordedFrequencies[k], &recordedPower[k]);
+  while (freq > 0.001) {
+    fscanf(resultPointer, "%f %f", &timestamp, &freq);
+    if (timestamp >= t) {
+      printf("%f : %d\n", freq, indClosestInArray(freq, freqTable, FREQ_NUMBER));
+      t += NOTE_DURATION;
+    }
   }
+
   pclose(resultPointer);
 
-  int i_max  = indMaxFloatArray(recordedPower, FREQ_LINES);
-  return recordedFrequencies[i_max];
-
-  return 0;
+  return -1;
 }

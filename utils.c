@@ -18,7 +18,7 @@ int indClosestInArray(float needle, float *t, int t_length) {
     i++;
   }
   if (i == t_length) {
-    return t_length;
+    return t_length - 1;
   } else if (i == 0) {
     return 0;
   } else if (needle - t[i - 1] > t[i] - needle) {

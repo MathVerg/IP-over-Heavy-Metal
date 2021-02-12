@@ -1,4 +1,5 @@
-main
+mainSender
+mainReceiver
 *.o
 *.zip
 .vscode/*

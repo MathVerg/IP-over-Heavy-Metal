@@ -7,7 +7,7 @@
 
 /* Plays the sounds corresponding to the data in the buffer.
 / Returns the number of bytes that were sent */
-int bytesToSound(dataBuffer *buff);
+int bytesToSound(metalBuffer *buff);
 
 
 

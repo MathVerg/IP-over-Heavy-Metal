@@ -11,8 +11,8 @@ int indClosestInArray(float needle, float *t, int t_length);
 
 /* packet to dataBuffer */
 
-void packet_to_dataBuffer(packet *packet, dataBuffer *data);
-void dataBuffer_to_packet(packet *packet, dataBuffer *data);
+void packet_to_dataBuffer(packet *packet, metalBuffer *data);
+void metalBuffer_to_packet(packet *packet, metalBuffer *data);
 
 /* prints a byte */
 

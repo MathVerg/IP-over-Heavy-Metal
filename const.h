@@ -19,10 +19,12 @@ static float freqTable[] = {261.63, 293.66, 329.63, 349.23, 392.0, 440.0, 493.88
 #define FREQ_LOW_BOUND 21 //first line of the frequency file to look at
 #define FREQ_LINES 83 //number of lines of this file that we have to consider
 
-typedef struct dataBuffer {
+
+/* holds ints that represent indexes for the freq table */
+typedef struct metalBuffer {
   int* data;
   int length;
-} dataBuffer;
+} metalBuffer;
 
 
 /*

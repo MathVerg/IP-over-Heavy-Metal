@@ -24,7 +24,7 @@ clean:
 	rm -f $(REBUILDABLES) *.gch
 
 
-mainSender : mainSender.o soundCode.o
+mainSender : mainSender.o soundCode.o utils.o sniffer.o parse.o tun.o
 	gcc -g -o $@ $^
 
 mainReceiver : mainReceiver.o soundDecode.o utils.o

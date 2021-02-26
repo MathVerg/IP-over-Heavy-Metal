@@ -3,14 +3,25 @@
 #include <string.h>
 
 #include "soundCode.h"
+#include "utils.h"
+#include "sniffer.h"
+#include "parse.h"
+#include "const.h"
 
 int main(int argc, char *argv[]) {
-  //int gamme[] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
-  int auClairDeLaLune[] = {3, 9, 5, 2, 6, 8, 11, 4, 11, 11, 0};
+  packet packet;
+  packet_info info;
+  packet.data = malloc(MTU);
+  intercept_packet(&packet);
+  parse_packet(&packet, &info);
+  print_packet_info(&info);
+  free(packet.data);
+
   metalBuffer buff;
   memset(&buff, 0, sizeof(buff));
-  buff.data = auClairDeLaLune;
-  buff.length = 11;
+
+  packet_to_metalBuffer(&buff, &packet);
+
   bytesToSound(&buff);
   return 0;
 }

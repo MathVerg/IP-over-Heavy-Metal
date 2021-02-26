@@ -29,7 +29,7 @@ int indClosestInArray(float needle, float *t, int t_length) {
 
 }
 
-void packet_to_metalBuffer(packet *packet, metalBuffer *data) {
+void packet_to_metalBuffer(metalBuffer *data, packet *packet) {
   data->length = 2*packet->length;
   for (int i = 0; i < packet->length; ++i) {
     unsigned char x = (packet->data)[i];

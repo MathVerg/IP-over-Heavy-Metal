@@ -9,9 +9,9 @@ int indMaxFloatArray(float *t, int t_length);
 /* Index of the closest number in a sorted array */
 int indClosestInArray(float needle, float *t, int t_length);
 
-/* packet to dataBuffer */
+/* conversions between packet and metalBuffer */
 
-void packet_to_dataBuffer(packet *packet, metalBuffer *data);
+void packet_to_metalBuffer(metalBuffer *data, packet *packet);
 void metalBuffer_to_packet(packet *packet, metalBuffer *data);
 
 /* prints a byte */

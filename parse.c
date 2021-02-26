@@ -1,9 +1,10 @@
 #include "parse.h"
 #include "utils.h"
 #include <string.h>
+#include <stdio.h>
 
 void parse_packet(packet *packet, packet_info *info) {
-    
+
     // The first 4 bits encode the version
 
     info->version = (packet->data)[0] / 16;
@@ -19,10 +20,10 @@ void parse_packet(packet *packet, packet_info *info) {
 
     int i = 0;
     for (int j = 12; j < 16; ++j) {
-        unsigned char x = (unsigned char) (packet->data)[j];
+        unsigned char x = (packet->data)[j];
         int n = nbdigits((int) x), e = 10;
         for (int k = n-1; k >= 0; --k) {
-            (info->from)[i+k] = (unsigned char) (x%e) + 48;
+            (info->from)[i+k] = (x%e) + 48;
             x /= e;
             e *= 10;
         }
@@ -36,10 +37,10 @@ void parse_packet(packet *packet, packet_info *info) {
 
     i = 0;
     for (int j = 16; j < 20; ++j) {
-        unsigned char x = (unsigned char) (packet->data)[j];
+        unsigned char x = (packet->data)[j];
         int n = nbdigits((int) x), e = 10;
         for (int k = n-1; k >= 0; --k) {
-            (info->dest)[i+k] = (unsigned char) (x%e) + 48;
+            (info->dest)[i+k] = (x%e) + 48;
             x /= e;
             e *= 10;
         }

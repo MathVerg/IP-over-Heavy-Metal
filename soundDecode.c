@@ -54,7 +54,8 @@ int soundToBytes(metalBuffer *buffer) {
   }
   pclose(resultPointer);
 
-  buffer->data = receivedNotes;
+  memcpy(buffer->data, receivedNotes, noteIndex*sizeof(int));
+
   buffer->length = noteIndex;
 
   return 0;

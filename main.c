@@ -6,11 +6,10 @@
 int main() {
     packet packet;
     packet_info info;
-    packet.data = malloc(MTU);
+    memset(&packet, 0, sizeof(packet));
     intercept_packet(&packet);
     //print_packet(&packet);
     parse_packet(&packet, &info);
     print_packet_info(&info);
-    free(packet.data);
     return 0;
 }

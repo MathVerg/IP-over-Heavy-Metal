@@ -22,7 +22,7 @@ static float freqTable[] = {261.63, 293.66, 329.63, 349.23, 392.0, 440.0, 493.88
 
 /* holds ints that represent indexes for the freq table */
 typedef struct metalBuffer {
-  int* data;
+  int data[MAX_METAL_SIZE];
   int length;
 } metalBuffer;
 
@@ -33,7 +33,7 @@ we always suppose that data = malloc(MTU)
 */
 
 typedef struct packet {
-  char *data;
+  unsigned char data[MTU];
   int length;
 } packet;
 

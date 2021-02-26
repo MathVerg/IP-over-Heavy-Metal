@@ -2,7 +2,7 @@
 #define CONST_H
 
 #define MTU 1500
-#define NOTE_DURATION 0.5
+#define NOTE_DURATION 0.25
 
 // name of tun interface: tunX
 

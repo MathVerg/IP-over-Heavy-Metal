@@ -21,7 +21,7 @@ all : mainSender mainReceiver main
 
 
 clean:
-	rm -f $(REBUILDABLES) *.gch
+	rm -f $(REBUILDABLES) $(LINK_TARGETS) *.gch
 
 
 mainSender : mainSender.o soundCode.o utils.o sniffer.o parse.o tun.o

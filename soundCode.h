@@ -4,6 +4,8 @@
 
 #include "const.h"
 
+#define GROWL 1
+
 
 /* Plays the sounds corresponding to the data in the buffer.
 / Returns the number of bytes that were sent */

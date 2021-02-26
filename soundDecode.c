@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "soundDecode.h"
 #include "utils.h"
 
@@ -32,15 +33,29 @@ int soundToBytes(metalBuffer *buffer) {
 
   float timestamp = 0.0, freq = 1.0, t = 0.0;
 
-  while (freq > 0.001) {
-    fscanf(resultPointer, "%f %f", &timestamp, &freq);
-    if (timestamp >= t) {
-      printf("%f : %d\n", freq, indClosestInArray(freq, freqTable, FREQ_NUMBER));
-      t += NOTE_DURATION + COMMAND_DELAY;
-    }
-  }
+  int receivedNotes[MAX_METAL_SIZE];
+  memset(receivedNotes, 0, MAX_METAL_SIZE*sizeof(int));
+  int noteIndex = 0;
 
+  int end = 0;
+
+  while (!end && freq > 0.001 && noteIndex < MAX_METAL_SIZE) {
+    if (fscanf(resultPointer, "%f %f", &timestamp, &freq) == 2) {
+      if (timestamp >= t) {
+        //printf("%f : %d\n", freq, indClosestInArray(freq, freqTable, FREQ_NUMBER));
+        receivedNotes[noteIndex] = indClosestInArray(freq, freqTable, FREQ_NUMBER);
+        noteIndex ++;
+        t += NOTE_DURATION + COMMAND_DELAY;
+      }
+    } else {
+      end = 1;
+    }
+
+  }
   pclose(resultPointer);
+
+  buffer->data = receivedNotes;
+  buffer->length = noteIndex;
 
   return 0;
 }

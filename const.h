@@ -10,7 +10,7 @@
 
 // by default, mtu = 1500 bytes (max transmission unit)
 
-#define MAX_DATA_SIZE 2*MTU // 1 byte = 2 notes
+#define MAX_METAL_SIZE 2*MTU // 1 byte = 2 notes
 
 
 /* frequecy code */

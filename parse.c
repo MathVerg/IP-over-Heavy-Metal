@@ -59,7 +59,6 @@ void parse_packet(packet *packet, packet_info *info) {
 }
 
 void print_packet_info(packet_info *info) {
-    printf("#############################\n\n");
     printf("Version: IPV%d\n\n", info->version);
     printf("Protocole: %s\n\n", info->protocole);
     printf("From: %s\n\n", info->from);

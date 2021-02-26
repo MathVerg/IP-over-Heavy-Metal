@@ -1,17 +1,16 @@
 #include "tun.h"
 #include "sniffer.h"
 #include "utils.h"
+#include "parse.h"
 
 int main() {
     packet packet;
-    dataBuffer buf;
+    packet_info info;
     packet.data = malloc(MTU);
-    buf.data = malloc(MAX_DATA_SIZE);
     intercept_packet(&packet);
-    packet_to_dataBuffer(&packet, &buf);
-    dataBuffer_to_packet(&packet, &buf);
-    print_packet(&packet);
+    //print_packet(&packet);
+    parse_packet(&packet, &info);
+    print_packet_info(&info);
     free(packet.data);
-    free(buf.data);
     return 0;
 }

@@ -1,5 +1,5 @@
 
-LINK_TARGETS = mainSender mainReceiver main
+LINK_TARGETS = mainSender mainReceiver tun main
 
 PACK_DEST = LemoineVergnolleHeavyMetal.zip
 
@@ -30,7 +30,10 @@ mainSender : mainSender.o soundCode.o
 mainReceiver : mainReceiver.o soundDecode.o utils.o
 	gcc -g -o $@ $^
 
-main: main.o tun.o sniffer.o utils.o
+main: main.o tun.o sniffer.o utils.o parse.o
+	gcc -g -o $@ $^
+
+tun: tun.o
 	gcc -g -o $@ $^
 
 %.o : %.c

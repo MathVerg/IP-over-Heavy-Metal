@@ -43,3 +43,28 @@ void dataBuffer_to_packet(packet *packet, dataBuffer *data) {
   for (int i = 0; i < packet->length; ++i)
     (packet->data)[i] = (unsigned char) ((data->data)[2*i]*16+(data->data)[2*i+1]);
 }
+
+void print_byte(unsigned char b) {
+  for (int i = 7; i >= 0; --i) {
+    printf("%c", (b & (1 << i)) ? '1' : '0');
+  }
+}
+
+void packet_binary(char *buf, packet *packet) { // sizeof(buf) = 8*packet->length +1
+  for (int i = 0; i < packet->length; ++i) {
+    for (int j = 7; j >= 0; --j) {
+      buf[8*i+7-j] = ((packet->data)[i] & (1 << j)) ? '1' : '0';
+    }
+  }
+}
+
+int nbdigits(unsigned int x) {
+  int res = 0;
+  int i = 1;
+  while (x/i > 0) {
+    i *= 10;
+    res++;
+  }
+  if (res == 0) return 1;
+  return res;
+}

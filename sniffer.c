@@ -1,5 +1,6 @@
 #include "tun.h"
 #include "sniffer.h"
+#include "utils.h"
 
 void intercept_packet(packet *packet) {
     
@@ -24,7 +25,13 @@ void intercept_packet(packet *packet) {
 }
 
 void print_packet(packet *packet) {
+    FILE * file = fopen("file.txt", "wb");
     printf("packet size: %d\n", packet->length);
-    for (int i = 0; i < packet->length; ++i) 
-        printf("byte number %d: 0x%x    // %d\n", i, (unsigned char) (packet->data)[i], (unsigned char) (packet->data)[i]);
+    for (int i = 0; i < packet->length; ++i) {
+        printf("byte number %d: 0x%x    // %d   ", i, (unsigned char) (packet->data)[i], (unsigned char) (packet->data)[i]);
+        print_byte((packet->data)[i]);
+        printf("\n");
+    }
+    fwrite(packet->data, 1, packet->length, file);
+    fclose(file);
 }

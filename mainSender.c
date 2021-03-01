@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
   while (1) {
     memset(&packet, 0, sizeof(packet));
     memset(&info, 0, sizeof(info));
-    intercept_packet(&tun_fd, &packet);
+    intercept_packet(tun_fd, &packet);
     parse_packet(&packet, &info);
     print_packet_info(&info);
 

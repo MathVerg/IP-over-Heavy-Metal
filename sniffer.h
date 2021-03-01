@@ -8,6 +8,6 @@
 Intercepts an ip packet sent to the tun interface
 */
 
-void intercept_packet(int *tun_fd, packet *packet);
+void intercept_packet(int tun_fd, packet *packet);
 
 #endif // SNIFFER_H

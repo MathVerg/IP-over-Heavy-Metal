@@ -24,7 +24,7 @@ clean:
 
 
 mainSender : mainSender.o soundCode.o utils.o sniffer.o parse.o tun.o
-	gcc -g -o $@ $^
+	gcc -g -o $@ $^ -lm #lm allows to compile with the math library
 
 mainReceiver : mainReceiver.o soundDecode.o utils.o
 	gcc -g -o $@ $^

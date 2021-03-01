@@ -26,6 +26,7 @@ int main(int argc, char *argv[]) {
       packet_to_metalBuffer(&buff, &packet);
 
       bytesToSound(&buff);
+      printf("\n");
     }
 
   }

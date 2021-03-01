@@ -10,7 +10,9 @@ OBJS = \
 	soundDecode.o \
 	utils.o \
 	tun.o \
-	sniffer.o
+	sniffer.o \
+	feeder.o \
+	parse.o
 
 
 REBUILDABLES = $(OBJS) $(LINK_TARGET) $(PACK_DEST)
@@ -26,7 +28,7 @@ clean:
 mainSender : mainSender.o soundCode.o utils.o sniffer.o parse.o tun.o
 	gcc -g -o $@ $^ -lm #lm allows to compile with the math library
 
-mainReceiver : mainReceiver.o soundDecode.o utils.o
+mainReceiver : mainReceiver.o soundDecode.o utils.o parse.o tun.o feeder.o
 	gcc -g -o $@ $^
 
 %.o : %.c

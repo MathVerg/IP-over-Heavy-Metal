@@ -1,10 +1,12 @@
 #include "tun.h"
+#include "const.h"
+
 
 int tun_alloc(char *dev, int flags) {
 
   struct ifreq ifr;
   int fd, err;
-  char *clonedev = "/dev/net/tun";
+  char clonedev[] = "/dev/net/tun";
 
   /* Arguments taken by the function:
    *
@@ -50,4 +52,17 @@ int tun_alloc(char *dev, int flags) {
   /* this is the special file descriptor that the caller will use to talk
    * with the virtual interface */
   return fd;
+}
+
+int tun_link() {
+  // get the tun interface file descriptor
+  char tun_name[IFNAMSIZ];
+  strcpy(tun_name, TUN_NAME);
+
+  int tun_fd = tun_alloc(tun_name, IFF_TUN | IFF_NO_PI);
+  if (tun_fd < 0) {
+      fprintf(stderr, "Error allocating interface\n");
+      exit(EXIT_FAILURE);
+  }
+  return tun_fd;
 }

@@ -7,11 +7,12 @@
 #include "sniffer.h"
 #include "parse.h"
 #include "const.h"
+#include "tun.h"
 
 int main(int argc, char *argv[]) {
   packet packet;
   packet_info info;
-  int tun_fd = set_sniffer();
+  int tun_fd = tun_link();
   while (1) {
     memset(&packet, 0, sizeof(packet));
     memset(&info, 0, sizeof(info));

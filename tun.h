@@ -23,4 +23,9 @@ Some stuff has to be done in a terminal using sudo
 
 int tun_alloc(char *dev, int flags);
 
+/* gets the tun file dexcirptor */
+
+int tun_link();
+
+
 #endif // TUN_H

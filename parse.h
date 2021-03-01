@@ -22,4 +22,6 @@ void parse_packet(packet *packet, packet_info *info);
 
 void print_packet_info(packet_info *info);
 
+void print_packet(packet *packet);
+
 #endif // PARSE_H

@@ -66,3 +66,15 @@ void print_packet_info(packet_info *info) {
     printf("To: %s\n\n", info->dest);
     printf("Payload:\n\n%s\n\n", info->payload);
 }
+
+void print_packet(packet *packet) {
+    FILE * file = fopen("file.txt", "wb");
+    printf("packet size: %d\n", packet->length);
+    for (int i = 0; i < packet->length; ++i) {
+        printf("byte number %d: 0x%x    // %d   ", i, (unsigned char) (packet->data)[i], (unsigned char) (packet->data)[i]);
+        print_byte((packet->data)[i]);
+        printf("\n");
+    }
+    fwrite(packet->data, 1, packet->length, file);
+    fclose(file);
+}

@@ -11,16 +11,23 @@
 int main(int argc, char *argv[]) {
   packet packet;
   packet_info info;
-  memset(&packet, 0, sizeof(packet));
-  intercept_packet(&packet);
-  parse_packet(&packet, &info);
-  print_packet_info(&info);
+  int tun_fd = set_sniffer();
+  while (1) {
+    memset(&packet, 0, sizeof(packet));
+    memset(&info, 0, sizeof(info));
+    intercept_packet(&tun_fd, &packet);
+    parse_packet(&packet, &info);
+    print_packet_info(&info);
 
-  metalBuffer buff;
-  memset(&buff, 0, sizeof(buff));
+    if (info.version == 4) {
+      metalBuffer buff;
+      memset(&buff, 0, sizeof(buff));
 
-  packet_to_metalBuffer(&buff, &packet);
+      packet_to_metalBuffer(&buff, &packet);
 
-  bytesToSound(&buff);
+      bytesToSound(&buff);
+    }
+
+  }
   return 0;
 }

@@ -3,12 +3,14 @@
 
 #include "const.h"
 
+/* gets the tun file dexcirptor */
+int set_sniffer();
+
 /*
-An ip packet is sent to the tun interface
-intercept_packet returns a pointer to a structure representing this packet
+Intercepts an ip packet sent to the tun interface
 */
 
-void intercept_packet(packet *packet);
+void intercept_packet(int *tun_fd, packet *packet);
 
 void print_packet(packet *packet);
 

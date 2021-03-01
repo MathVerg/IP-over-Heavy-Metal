@@ -9,7 +9,7 @@
 
 /* Plays the sounds corresponding to the data in the buffer.
 / Returns the number of bytes that were sent */
-int bytesToSound(metalBuffer *buff);
+void bytesToSound(metalBuffer *buff);
 
 
 

@@ -2,22 +2,25 @@
 #include "sniffer.h"
 #include "utils.h"
 
-void intercept_packet(packet *packet) {
-    
-    // get the tun interface file descriptor
-    char tun_name[IFNAMSIZ];
-    strcpy(tun_name, TUN_NAME);
+int set_sniffer() {
+  // get the tun interface file descriptor
+  char tun_name[IFNAMSIZ];
+  strcpy(tun_name, TUN_NAME);
 
-    int tun_fd = tun_alloc(tun_name, IFF_TUN | IFF_NO_PI);
-    if (tun_fd < 0) {
-        fprintf(stderr, "Error allocating interface\n");
-        exit(EXIT_FAILURE);
-    }
+  int tun_fd = tun_alloc(tun_name, IFF_TUN | IFF_NO_PI);
+  if (tun_fd < 0) {
+      fprintf(stderr, "Error allocating interface\n");
+      exit(EXIT_FAILURE);
+  }
+  return tun_fd;
+}
 
-    int nread = read(tun_fd, packet->data, MTU);
+void intercept_packet(int *tun_fd, packet *packet) {
+
+    int nread = read(*tun_fd, packet->data, MTU);
     if (nread < 0) {
         fprintf(stderr, "read returned error\n");
-        close(tun_fd);
+        close(*tun_fd);
         exit(EXIT_FAILURE);
     }
 

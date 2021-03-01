@@ -1,12 +1,11 @@
 
-LINK_TARGETS = mainSender mainReceiver tun main
+LINK_TARGETS = mainSender mainReceiver
 
 PACK_DEST = LemoineVergnolleHeavyMetal.zip
 
 OBJS = \
 	mainReceiver.o \
 	mainSender.o \
-	main.o \
 	soundCode.o \
 	soundDecode.o \
 	utils.o \
@@ -17,7 +16,7 @@ OBJS = \
 REBUILDABLES = $(OBJS) $(LINK_TARGET) $(PACK_DEST)
 
 
-all : mainSender mainReceiver main
+all : mainSender mainReceiver
 
 
 clean:
@@ -28,12 +27,6 @@ mainSender : mainSender.o soundCode.o utils.o sniffer.o parse.o tun.o
 	gcc -g -o $@ $^
 
 mainReceiver : mainReceiver.o soundDecode.o utils.o
-	gcc -g -o $@ $^
-
-main: main.o tun.o sniffer.o utils.o parse.o
-	gcc -g -o $@ $^
-
-tun: tun.o
 	gcc -g -o $@ $^
 
 %.o : %.c

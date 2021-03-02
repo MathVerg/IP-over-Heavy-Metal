@@ -4,7 +4,7 @@
 #include "const.h"
 
 /*
-Writes an ip âcket to the tun interface
+Writes an ip packet on the tun interface
 */
 
 void write_packet(int tun_fd, packet *packet);

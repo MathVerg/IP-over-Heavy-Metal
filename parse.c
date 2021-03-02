@@ -8,7 +8,6 @@ void parse_packet(packet *packet, packet_info *info) {
     // The first 4 bits encode the version
 
     info->version = (packet->data)[0] / 16;
-    //printf("IPV%d\n", info->version);
 
     // Protocole
 
@@ -21,11 +20,11 @@ void parse_packet(packet *packet, packet_info *info) {
     int i = 0;
     for (int j = 12; j < 16; ++j) {
         unsigned char x = (packet->data)[j];
-        int n = nbdigits((int) x), e = 10;
+
+        int n = nbdigits((int) x);
         for (int k = n-1; k >= 0; --k) {
-            (info->from)[i+k] = (x%e) + 48;
-            x /= e;
-            e *= 10;
+            (info->from)[i+k] = (x%10) + 48;
+            x /= 10;
         }
         i += n;
         (info->from)[i++] = '.';
@@ -38,11 +37,10 @@ void parse_packet(packet *packet, packet_info *info) {
     i = 0;
     for (int j = 16; j < 20; ++j) {
         unsigned char x = (packet->data)[j];
-        int n = nbdigits((int) x), e = 10;
+        int n = nbdigits((int) x);
         for (int k = n-1; k >= 0; --k) {
-            (info->dest)[i+k] = (x%e) + 48;
-            x /= e;
-            e *= 10;
+            (info->dest)[i+k] = (x%10) + 48;
+            x /= 10;
         }
         i += n;
         (info->dest)[i++] = '.';
@@ -68,13 +66,13 @@ void print_packet_info(packet_info *info) {
 }
 
 void print_packet(packet *packet) {
-    FILE * file = fopen("file.txt", "wb");
+    //FILE * file = fopen("file.txt", "wb");
     printf("packet size: %d\n", packet->length);
     for (int i = 0; i < packet->length; ++i) {
         printf("byte number %d: 0x%x    // %d   ", i, (unsigned char) (packet->data)[i], (unsigned char) (packet->data)[i]);
         print_byte((packet->data)[i]);
         printf("\n");
     }
-    fwrite(packet->data, 1, packet->length, file);
-    fclose(file);
+    //fwrite(packet->data, 1, packet->length, file);
+    //fclose(file);
 }

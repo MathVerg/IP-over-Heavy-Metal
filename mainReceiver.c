@@ -24,6 +24,8 @@ int main(int argc, char *argv[]) {
   memset(&info, 0, sizeof(info));
 
   metalBuffer_to_packet(&packet, &buff);
+  printf("Affichage du paquet :\n\n");
+  print_packet(&packet);
   parse_packet(&packet, &info);
   print_packet_info(&info);
 

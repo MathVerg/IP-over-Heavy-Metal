@@ -39,4 +39,4 @@ mainReceiver : mainReceiver.o soundDecode.o utils.o parse.o tun.o feeder.o
 %.o : %.h
 
 pack: #prepare the zip file to be uploaded on Moodle
-	zip $(PACK_DEST) *.md *.c *.h Makefile
+	zip $(PACK_DEST) *.md *.c *.h *.sh Makefile growl.wav

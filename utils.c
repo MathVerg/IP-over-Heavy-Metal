@@ -44,6 +44,8 @@ void metalBuffer_to_packet(packet *packet, metalBuffer *data) {
     (packet->data)[i] = (unsigned char) ((data->data)[2*i]*16+(data->data)[2*i+1]);
 }
 
+// useful for debugging
+
 void print_byte(unsigned char b) {
   for (int i = 7; i >= 0; --i) {
     printf("%c", (b & (1 << i)) ? '1' : '0');

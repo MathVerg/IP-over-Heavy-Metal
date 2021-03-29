@@ -12,7 +12,8 @@ void parse_packet(packet *packet, packet_info *info) {
     // Protocole
 
     if ((int) packet->data[9] == 17) strcpy(info->protocole, "UDP");
-    else strcpy(info->protocole, "TCP");
+    else if (packet->data[9] == 6) strcpy(info->protocole, "TCP");
+    else strcpy(info->protocole, "UNKNOWN");
     //printf("\nprotocole: %s\n\n", info->protocole);
 
     // Source address

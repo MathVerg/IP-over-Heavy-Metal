@@ -1,6 +1,8 @@
 #include "tun.h"
 #include "const.h"
 
+// the following function comes from the tuto on https://backreference.org/2010/03/26/tuntap-interface-tutorial/
+
 
 int tun_alloc(char *dev, int flags) {
 

@@ -3,7 +3,7 @@
 
 #define MTU 1500
 
-#define NOTE_DURATION 0.5
+#define NOTE_DURATION 0.75
 
 // #define COMMAND_DELAY 0.085
 

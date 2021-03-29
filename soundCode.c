@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <unistd.h>
 
 #include "soundCode.h"
 
@@ -18,6 +19,7 @@ void bytesToSound(metalBuffer *buffer, float command_delay) {
     printf("%d, ", buffer->data[i]);
     sprintf(command, "/usr/bin/play -n synth %f sine %f > /dev/null 2>&1", NOTE_DURATION, freqTable[buffer->data[i]]);
     system(command);
+    sleep(NOTE_DURATION);
   }
   if (GROWL) {
     pclose(growlPointer);

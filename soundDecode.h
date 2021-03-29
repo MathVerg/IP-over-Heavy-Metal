@@ -10,6 +10,6 @@
 
 /* Writes the data recorded as sound in the buffer.
 / Returns the number of bytes that were written */
-void soundToBytes(metalBuffer *buff);
+void soundToBytes(metalBuffer *buff, float command_delay);
 
 #endif // SOUND_DECODE_H

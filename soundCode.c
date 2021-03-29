@@ -5,11 +5,11 @@
 #include "soundCode.h"
 
 
-void bytesToSound(metalBuffer *buffer) {
+void bytesToSound(metalBuffer *buffer, float command_delay) {
   FILE* growlPointer;
   if (GROWL) {
     char growlCommand[100];
-    int reps = (int) floor(buffer->length * (NOTE_DURATION + COMMAND_DELAY)/GROWL_DURATION);
+    int reps = (int) floor(buffer->length * (NOTE_DURATION + command_delay)/GROWL_DURATION);
     sprintf(growlCommand, "/usr/bin/play -v %f growl.wav repeat %d 2>/dev/null", GROWL_VOLUME, reps);
     growlPointer = popen(growlCommand, "r");
   }

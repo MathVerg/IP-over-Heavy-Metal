@@ -10,7 +10,7 @@ static char trimmedPath[] =  "/tmp/trimmed.wav";
 
 /* Writes the data recorded as sound in the buffer.
 / Returns the number of bytes that were written */
-void soundToBytes(metalBuffer *buffer) {
+void soundToBytes(metalBuffer *buffer, float command_delay) {
 
   char recordCommand[100];
   sprintf(recordCommand, "/usr/bin/rec %s silence 0 1 %f %f%%", recordPath, FINAL_SILENCE_TIME, SILENCE_THRESHOLD); //stop recording after 3.0 s of silence
@@ -45,7 +45,7 @@ void soundToBytes(metalBuffer *buffer) {
         //printf("%f : %d\n", freq, indClosestInArray(freq, freqTable, FREQ_NUMBER));
         receivedNotes[noteIndex] = indClosestInArray(freq, freqTable, FREQ_NUMBER);
         noteIndex ++;
-        t += NOTE_DURATION + COMMAND_DELAY;
+        t += NOTE_DURATION + command_delay;
       }
     } else {
       end = 1;

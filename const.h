@@ -3,9 +3,9 @@
 
 #define MTU 1500
 
-#define NOTE_DURATION 0.25
+#define NOTE_DURATION 0.5
 
-#define COMMAND_DELAY 0.065
+// #define COMMAND_DELAY 0.085
 
 // name of tun interface: tunX
 

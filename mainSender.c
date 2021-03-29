@@ -9,7 +9,17 @@
 #include "const.h"
 #include "tun.h"
 
+#define COMMAND_DELAY 0.085
+
 int main(int argc, char *argv[]) {
+
+  float command_delay = 0;
+
+  if (argc > 1) {
+    command_delay = atof(argv[1]);
+  }
+  else command_delay = COMMAND_DELAY;
+
   packet packet;
   packet_info info;
   int tun_fd = tun_link();
@@ -26,7 +36,7 @@ int main(int argc, char *argv[]) {
 
       packet_to_metalBuffer(&buff, &packet);
 
-      bytesToSound(&buff);
+      bytesToSound(&buff, command_delay);
       printf("\n");
     }
 

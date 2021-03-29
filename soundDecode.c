@@ -45,7 +45,7 @@ void soundToBytes(metalBuffer *buffer, float command_delay) {
         //printf("%f : %d\n", freq, indClosestInArray(freq, freqTable, FREQ_NUMBER));
         receivedNotes[noteIndex] = indClosestInArray(freq, freqTable, FREQ_NUMBER);
         noteIndex ++;
-        t += 2*NOTE_DURATION + command_delay;
+        t += NOTE_DURATION + command_delay;
       }
     } else {
       end = 1;

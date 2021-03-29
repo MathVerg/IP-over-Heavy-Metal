@@ -4,7 +4,7 @@
 
 #include "const.h"
 
-#define GROWL 0
+#define GROWL 1
 
 #define GROWL_DURATION 0.247
 

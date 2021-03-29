@@ -1,6 +1,5 @@
 #include "tun.h"
 #include "sniffer.h"
-#include "utils.h"
 
 void intercept_packet(int tun_fd, packet *packet) {
 

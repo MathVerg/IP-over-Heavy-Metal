@@ -11,7 +11,7 @@ The program simply parses the packet, and then creates a new socket
 typedef struct packet_info {
     char dest[16]; // eg "129.104.201.123"
     char from[16];
-    char protocole[4]; // TCP or UDP
+    char protocol[4]; // TCP or UDP
     int version; // 4 or 6
     char payload[MTU];
 } packet_info;
